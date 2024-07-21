@@ -1,32 +1,18 @@
-const person = {
-  name: "Shubham",
-  age: 28,
-};
+//type alias
+type NumAndStr = number | string; //union
+type User = { name: string; age: number };
 
-enum ManagementLevel {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
+const u1: User = { name: "Shubham", age: 26 };
+
+function combine(input1: NumAndStr, input2: NumAndStr) {
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-const person1: object = {
-  name: "Shubham",
-  age: 28,
-  level: ManagementLevel.ADMIN,
-};
-
-const person2: {
-  name: string;
-  age: number;
-  hobbies: string[]; //an array
-  role: [number, string]; //a tuple -- fixed length array and fixed type for each position.
-} = {
-  name: "Shubham",
-  age: 28,
-  hobbies: ["sport", "cooking"],
-  role: [2, "author"],
-};
-
-let favoriteActivities: string[];
-
-console.log(person);
+const combinedAges = combine(30, 26);
+const combinedNames = combine("Max", "Anna");
