@@ -1,23 +1,18 @@
-function add(n1: number, n2: number): number {
-  return n1 + n2;
+let userInput: unknown; //`unknown` type is differnt than `any`.
+let username: string;
+
+userInput = 5; //works
+userInput = "Max"; //works
+// username = userInput //won't work. coz userInput's type is unknown, so it can't be a string.
+
+//this would work.
+if (typeof userInput === "string") {
+  username = userInput;
 }
 
-function printResult(num: number): void {
-  console.log(num);
+//neither void, nor undefined
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code };
 }
 
-function printResult2(num: number): undefined {
-  console.log(num);
-  return;
-}
-
-let combineValues: Function;
-combineValues = add;
-// combineValues = printResult // won't give error!
-
-console.log(combineValues(8, 8));
-
-let combineValues2: (a: number, b: number) => number;
-combineValues2 = add;
-//combineValues2 = printResult; //wont work.
-console.log(combineValues2(8, 8));
+generateError("An error occured", 500);
