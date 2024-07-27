@@ -1,18 +1,23 @@
-//type alias
-type NumAndStr = number | string; //union
-type User = { name: string; age: number };
-
-const u1: User = { name: "Shubham", age: 26 };
-
-function combine(input1: NumAndStr, input2: NumAndStr) {
-  let result;
-  if (typeof input1 === "number" && typeof input2 === "number") {
-    result = input1 + input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-  return result;
+function add(n1: number, n2: number): number {
+  return n1 + n2;
 }
 
-const combinedAges = combine(30, 26);
-const combinedNames = combine("Max", "Anna");
+function printResult(num: number): void {
+  console.log(num);
+}
+
+function printResult2(num: number): undefined {
+  console.log(num);
+  return;
+}
+
+let combineValues: Function;
+combineValues = add;
+// combineValues = printResult // won't give error!
+
+console.log(combineValues(8, 8));
+
+let combineValues2: (a: number, b: number) => number;
+combineValues2 = add;
+//combineValues2 = printResult; //wont work.
+console.log(combineValues2(8, 8));
