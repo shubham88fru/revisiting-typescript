@@ -16,3 +16,19 @@ function generateError(message: string, code: number): never {
 }
 
 generateError("An error occured", 500);
+
+//arrow functions.
+const add = (a: number, b: number = 1) => a + b; //default second argument to 1.
+
+//arrays.
+const add2 = (...numbers: number[]) => {
+  let result = 0;
+  console.log(numbers);
+};
+add2(5, 10, 1.1, 2, 3.7);
+
+const add3 = (...numbers: [number, number, number]) => {
+  let result = 0;
+  console.log(numbers);
+};
+add3(5, 6, 7); //can pass only 3 args.
