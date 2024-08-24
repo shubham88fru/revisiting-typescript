@@ -75,3 +75,26 @@ const objStorage = new DataStorage<object>();
 objStorage.addItem({ name: "Max" });
 objStorage.addItem({ name: "Manu" });
 objStorage.removeItem({ name: "Manu" });
+
+//
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {}; //openup.
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+const arr: Readonly<string[]> = ["Max", "Sports"]; //readonly array - lockdown.
+// arr.push('Manu'); //can't add to readonly array.
+// arr.pop(); //can't remove from readonly array.
