@@ -17,7 +17,7 @@ function autobind(
 
 class ProjectInput {
   templateEl: HTMLTemplateElement;
-  hostElememnt: HTMLDivElement;
+  hostElement: HTMLDivElement;
   element: HTMLFormElement;
   titleInputEl: HTMLInputElement;
   descriptionInputElement: HTMLInputElement;
@@ -27,7 +27,7 @@ class ProjectInput {
     this.templateEl = document.getElementById(
       "project-input"
     )! as HTMLTemplateElement;
-    this.hostElememnt = document.getElementById("app")! as HTMLDivElement;
+    this.hostElement = document.getElementById("app")! as HTMLDivElement;
 
     const importedNode = document.importNode(this.templateEl.content, true);
     this.element = importedNode.firstElementChild as HTMLFormElement;
@@ -90,7 +90,7 @@ class ProjectInput {
   }
 
   private attach() {
-    this.hostElememnt.insertAdjacentElement("afterbegin", this.element);
+    this.hostElement.insertAdjacentElement("afterbegin", this.element);
   }
 }
 
