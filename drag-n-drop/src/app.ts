@@ -1,3 +1,39 @@
+// Project state management
+class ProjectState {
+  private listeners: any[] = [];
+  private projects: any[] = [];
+  private static instance: ProjectState;
+
+  private constructor() {} //singleton
+
+  static getInstance() {
+    if (this.instance) return this.instance;
+    this.instance = new ProjectState();
+    return this.instance;
+  }
+
+  addProject(title: string, description: string, numOfPeople: number) {
+    const newProject = {
+      id: Math.random().toString(),
+      title: title,
+      description: description,
+      people: numOfPeople,
+    };
+    this.projects.push(newProject);
+
+    //notify
+    for (const listener of this.listeners) {
+      listener(this.projects.slice());
+    }
+  }
+
+  addListener(listener: Function) {
+    this.listeners.push(listener);
+  }
+}
+
+const projectState = ProjectState.getInstance(); //singleton
+
 //Validation
 interface Validatable {
   value: string | number;
@@ -68,18 +104,37 @@ class ProjectList {
   templateEl: HTMLTemplateElement;
   hostElement: HTMLDivElement;
   element: HTMLElement;
+  assingnedProjects: any[];
 
   constructor(private type: "active" | "finished") {
     this.templateEl = document.getElementById(
       "project-list"
     )! as HTMLTemplateElement;
     this.hostElement = document.getElementById("app")! as HTMLDivElement;
+    this.assingnedProjects = [];
 
     const importedNode = document.importNode(this.templateEl.content, true);
     this.element = importedNode.firstElementChild as HTMLElement;
     this.element.id = `${this.type}-projects`;
+
+    projectState.addListener((projects: any[]) => {
+      this.assingnedProjects = projects;
+      this.renderProjects();
+    });
+
     this.attach();
     this.renderContent();
+  }
+
+  private renderProjects() {
+    const listEl = document.getElementById(
+      `${this.type}-project-list`
+    )! as HTMLUListElement;
+    for (const prjItem of this.assingnedProjects) {
+      const listItem = document.createElement("li");
+      listItem.textContent = prjItem.title;
+      listEl.appendChild(listItem);
+    }
   }
 
   private renderContent() {
@@ -176,7 +231,7 @@ class ProjectInput {
     const userInput = this.gatherUserInput();
     if (Array.isArray(userInput)) {
       const [title, desc, people] = userInput;
-      console.log(title, desc, people);
+      projectState.addProject(title, desc, people);
       this.clearInput();
     }
   }
