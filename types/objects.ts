@@ -49,3 +49,37 @@ const song: Song = {
 
 calculatePayout(song);
 printSong(song);
+
+type Point = {
+  x: number;
+  y: number;
+  z?: number; //optional
+};
+
+const x: Point = { x: 1, y: 2, z: 3 }; //allowed.
+const xx: Point = { x: 1, y: 3 }; //allowed - z is optional.
+
+type User = {
+  readonly id: number; //can't reassing.
+  username: string;
+};
+
+const user: User = {
+  id: 12837,
+  username: "shubham",
+};
+
+console.log(user.id); //allowed.
+// user.id = 5; //not-allowed.
+
+type Circle = {
+  radius: number;
+};
+
+type Colorful = {
+  color: string;
+};
+
+type ColorfulCircle = Circle & Colorful; //intersection type.
+const happyFace: ColorfulCircle = { radius: 2, color: "red" }; //not-allowed.
+// const sadFace: ColorfulCircle = { radius: 2 }; //not-allowed.
