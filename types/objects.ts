@@ -50,14 +50,14 @@ const song: Song = {
 calculatePayout(song);
 printSong(song);
 
-type Point = {
+type Point2 = {
   x: number;
   y: number;
   z?: number; //optional
 };
 
-const x: Point = { x: 1, y: 2, z: 3 }; //allowed.
-const xx: Point = { x: 1, y: 3 }; //allowed - z is optional.
+const x: Point2 = { x: 1, y: 2, z: 3 }; //allowed.
+const xx: Point2 = { x: 1, y: 3 }; //allowed - z is optional.
 
 type User = {
   readonly id: number; //can't reassing.

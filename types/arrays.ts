@@ -4,11 +4,11 @@ activeUsers = ["Harry", "Ron", "Hermione"];
 
 const bools: Array<boolean> = [true, false, true]; // same as boolean[]
 
-type Point = {
+type Point1 = {
   x: number;
   y: number;
 };
-const coords: Point[] = [
+const coords: Point1[] = [
   { x: 0, y: 0 },
   { x: 1, y: 1 },
 ];
