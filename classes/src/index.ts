@@ -7,6 +7,18 @@ class Player {
     this.first = first;
     this.last = last;
   }
+
+  public publicMethod(): void {
+    console.log("Public!");
+  }
+
+  private privateMethod(): void {
+    console.log("Private!");
+  }
 }
 
 const elton = new Player("Elton", "Steele");
+// elton.first // not allowed.
+elton.score; //allowed.
+elton.publicMethod(); //allowed.
+// elton.privateMethod(); //not allowed.
