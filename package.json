@@ -19,6 +19,8 @@
     "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@types/google.maps": "^3.58.1",
     "tsc": "^2.0.4"
   }
 }
