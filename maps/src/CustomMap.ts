@@ -1,7 +1,4 @@
-import { User } from "./User";
-import { Company } from "./Company";
 import { Mappable } from "./Mappable";
-
 export class CustomMap {
   private googleMap: google.maps.Map;
 
