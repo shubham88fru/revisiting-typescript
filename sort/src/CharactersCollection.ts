@@ -1,7 +1,6 @@
-import { Sortable } from "./Sortable";
 import { Sorter } from "./Sorter";
 
-export class CharactersCollection extends Sorter implements Sortable {
+export class CharactersCollection extends Sorter {
   constructor(public data: string) {
     super();
   }
